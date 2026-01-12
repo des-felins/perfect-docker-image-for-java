@@ -1,0 +1,223 @@
+/* Cyberpunk fonts */
+@import url("https://fonts.googleapis.com/css2?family=Anta:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap");
+
+/* --- Color system tuned to blue–pink–cyan --- */
+:root{
+    --bg-glass: rgba(8, 16, 30, 0.76);         /* dark blue glass */
+    --ink: #e6ecf1;                             /* soft off-white */
+    --neon-pink: #6F2DBD;                       /* primary accent */
+    --neon-cyan: #00e6ff;                       /* secondary accent */
+    --neon-blue: #7aa7ff;                       /* tertiary accent for subtle bits */
+    --shadow: rgba(0, 0, 0, 0.35);
+    --code-bg: rgba(8,16,30,0.95);
+    --code-border: rgba(0,230,255,0.55);
+    --code-ink: #e8f7ff;
+}
+
+/* --- General Slidev Layout & Background --- */
+.slidev-layout{
+    position: relative;
+    overflow: hidden;
+    font-family: "Anta", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    color: var(--ink);
+}
+
+/* Background image sits behind, then a subtle neon overlay to harmonize hues */
+.slidev-layout::before{
+    content: "";
+    position: absolute; inset: 0;
+    background-image: url("/background.jpg");
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+    pointer-events: none;
+    transition: filter 0.5s ease-out, transform 0.6s ease-out;
+}
+
+.slidev-layout::after{
+    content: "";
+    position: absolute; inset: 0;
+    background:
+            radial-gradient(60% 60% at 80% 20%, rgba(0,230,255,0.20) 0%, transparent 60%),
+            radial-gradient(50% 50% at 20% 80%, rgba(255,75,209,0.22) 0%, transparent 65%);
+    mix-blend-mode: screen;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.slidev-layout:not(.slidev-layout-cover)::before{
+    filter: brightness(0.75) blur(9px);
+    transform: scale(1.02);
+}
+
+.slidev-layout.two-columns,
+.slidev-layout.two-cols-header{
+    display: flex;
+    gap: 2rem;
+    justify-content: space-around;
+}
+.slidev-layout.two-columns > div,
+.slidev-layout.two-cols-header > .col-left,
+.slidev-layout.two-cols-header > .col-right{
+    flex: 1;
+    min-width: 0;
+}
+
+/* --- Default text --- */
+.slidev-page{ color: var(--ink); }
+
+/* --- Translucent glass panels for content --- */
+h1, h2, h3, h4, p, ul, ol{
+    background-color: var(--bg-glass);
+    padding: 0.75rem 1.25rem;
+    border-radius: 10px;
+    border-left: 4px solid var(--neon-pink);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 8px 30px var(--shadow);
+    text-align: left;
+}
+
+/* --- Headings --- */
+h1{
+    font-weight: 700;
+    color: var(--neon-pink);
+    text-shadow: 0 0 6px rgba(111, 45, 189, 0.75), 0 0 18px rgba(111, 45, 189, 0.35);
+    border-color: var(--neon-pink);
+}
+h2{
+    color: var(--neon-cyan);
+    text-shadow: 0 0 6px rgba(0,230,255,0.75), 0 0 18px rgba(0,230,255,0.35);
+    border-color: var(--neon-cyan);
+}
+h3, h4{
+    color: #cfe7ff;
+    text-shadow: 0 0 4px rgba(122,167,255,0.6);
+    border-color: var(--neon-blue);
+}
+
+/* --- Links --- */
+a{
+    color: var(--neon-cyan);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--neon-cyan);
+    transition: filter 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+a:hover{
+    background-color: rgba(0,230,255,0.15);
+    color: #ffffff;
+    text-shadow: 0 0 6px rgba(0,230,255,0.8);
+    filter: brightness(1.05);
+}
+
+/* --- Code blocks --- */
+pre{
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+    background-color: rgba(8, 16, 30, 0.90) !important;
+    border-radius: 10px;
+    border: 1px solid var(--neon-cyan);
+    padding: 1em;
+    box-shadow: 0 0 22px rgba(0,230,255,0.18), 0 10px 30px var(--shadow);
+}
+code{
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+    color: #e8f7ff;
+}
+
+/* Inline code inside text blocks */
+p code, li code{
+    background: rgba(0, 230, 255, 0.10);
+    border: 1px solid rgba(0, 230, 255, 0.35);
+    padding: 0.05rem 0.35rem;
+    border-radius: 6px;
+}
+
+/* --- Footer (page numbers) --- */
+.slidev-page-total,
+.slidev-page-current{
+    color: var(--ink);
+    background: rgba(0, 0, 0, 0.55);
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* --- Quotes --- */
+blockquote{
+    background-color: rgba(18, 28, 48, 0.95);
+    border-left: 8px solid var(--neon-cyan);
+    padding: 1.5rem 2rem;
+    font-style: italic;
+    color: #dde9ff;
+    position: relative;
+    box-shadow: 0 0 18px rgba(0,230,255,0.25), 0 10px 30px var(--shadow);
+    box-sizing: border-box;
+}
+blockquote p{
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0 0 0 8%;
+    color: inherit;
+    font-size: inherit;
+}
+blockquote::before{
+    content: "“";
+    font-family: "Anta", sans-serif;
+    font-size: 5em;
+    color: rgba(0, 230, 255, 0.22);
+    position: absolute;
+    top: -0.2em;
+    left: 0.05em;
+    line-height: 1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* --- Tables (if you use them) --- */
+table{
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-glass);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px var(--shadow);
+}
+th, td{
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+th{
+    color: var(--neon-cyan);
+    text-shadow: 0 0 4px rgba(0,230,255,0.6);
+}
+tr:hover td{
+    background: rgba(255, 75, 209, 0.08);
+}
+
+/* --- Utility badges/pills --- */
+.badge{
+    display: inline-block;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.85rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid var(--neon-pink);
+    color: var(--ink);
+    background: rgba(255,75,209,0.12);
+    box-shadow: 0 0 12px rgba(255,75,209,0.2) inset;
+}
+
+/* --- Images with neon frames --- */
+.neon-frame{
+    border: 1px solid var(--neon-blue);
+    border-radius: 10px;
+    box-shadow: 0 0 18px rgba(122,167,255,0.28), 0 10px 30px var(--shadow);
+}
+
+.shiki, .shiki pre, .shiki code {
+    color: #e9f6ff !important;
+}
+
+.shiki span { color: #e9f6ff !important; }
+.shiki .line { line-height: 1.5; }
