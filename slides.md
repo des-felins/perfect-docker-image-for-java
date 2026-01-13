@@ -95,8 +95,9 @@ Liberica is the JDK officially recommended by Spring
 
 - Set priorities
 - Mix & match various techniques
-  <br><br>
-  <v-click>The very techniques we will explore now 😎</v-click>
+
+<br/>
+<v-click>The very techniques we will explore now 😎</v-click>
 
 ---
 
@@ -412,6 +413,13 @@ The size of the actively updated layer is now 1.21MB!
 <br>
 <v-click at="2">Can we skip Dockerfiles altogether? 😳</v-click>
 
+
+---
+layout: image
+image: size.svg
+---
+
+
 ---
 layout: quote
 ---
@@ -540,7 +548,7 @@ layout: cover
 
 <br/>
 
-<v-click>Right now, our app starts in ~6 s</v-click>
+<v-click>Right now, our app starts in ~3.7s</v-click>
 
 ---
 layout: cover
@@ -603,7 +611,7 @@ vaadin.launch-browser=false
 ## AOT Cache with a Spring app
 <br/>
 
-```dockerfile {none|12|22-24|25-27|15}{maxHeight:'180px'}
+```dockerfile {none|12|22-26|15}{maxHeight:'180px'}
 FROM bellsoft/liberica-runtime-container:jdk-25-cds-musl as builder
 RUN apk add --no-cache nodejs npm
 WORKDIR /app
@@ -630,7 +638,6 @@ RUN java -Dspring.aot.enabled=true \
          -XX:AOTCacheOutput=app.aot \
          -Dspring.context.exit=onRefresh \
          -jar /app/app.jar
-
 ```
 
 ---
@@ -654,8 +661,7 @@ RUN java -Dspring.aot.enabled=true \
 
 The image is bigger because of the archive
 <br>
-Start is ~60% faster (2.2s)
-
+Start is ~60% faster (1.4s)
 
 ---
 
@@ -676,7 +682,7 @@ But
 ## Native Image in Docker
 <br/>
 
-```dockerfile {none|1|5|7|9,10}{maxHeight:'180px'}
+```dockerfile {none|1|5|6|8|10,11}{maxHeight:'180px'}
 FROM bellsoft/liberica-native-image-kit-container:jdk-25-nik-25-musl as builder
 RUN apk add --no-cache nodejs npm
 WORKDIR /app
@@ -692,22 +698,20 @@ COPY --from=builder /app/neurowatch/target/native/neurowatch /app/app
 
 ---
 
-## Result: 198MB
+## Result: start in 0.7s
 <br/>
 
-```plain {2,5}{maxHeight:'180px'}
-IMAGE          CREATED          CREATED BY                                      SIZE      COMMENT
-757636acfada   8 minutes ago    [stage-1 3/3] COPY --from=builder /app/neuro…   185MB     buildkit.exporter.image.v0
-<missing>      55 minutes ago   COPY /app/neurowatch/target/native/neurowatc…   0B        buildkit.dockerfile.v0
-<missing>      55 minutes ago   ENTRYPOINT ["/app/app"]                         0B        buildkit.dockerfile.v0
-<missing>      20 hours ago     WORKDIR /app                                    8.64MB    buildkit.dockerfile.v0
-```
-
 - Based on Linux only
-- Start in 0.4 s at peak performance
+- Start at peak performance
+- Image size: 225MB
 
 But:
 - Need to rebuild the whole image every time
+
+---
+layout: image
+image: start.svg
+---
 
 
 ---
@@ -854,6 +858,7 @@ layout: cover
 1. Clear CVE management process
 2. Provenance data for compliance and audits
 3. Lower operational overhead
+4. Immutable images
 
 ---
 layout: cover
