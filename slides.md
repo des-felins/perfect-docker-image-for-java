@@ -150,40 +150,40 @@ ENTRYPOINT java -jar /app/neurowatch/target/*.jar
 
 ---
 
-## Result: 788MiB (820MB)
+## Result: 984MB
 <br/>
 
 ```plain {none|19,18|9-17|8|5,4}{maxHeight:'300px'}
-ID         TAG                          SIZE      COMMAND                                                                         │
-│946a796e83 neurowatch-neurowatch:latest 0B        ENTRYPOINT ["/bin/sh" "-c" "java -jar /app/neurowatch/target/*.jar"]            │
-│<missing>                               0B        EXPOSE map[8081/tcp:{}]                                                         │
-│<missing>                               501.22MiB RUN /bin/sh -c cd neurowatch && ./mvnw -Pproduction clean package # buildkit    │
-│<missing>                               8.65MiB   COPY . /app/neurowatch # buildkit                                               │
-│<missing>                               0B        WORKDIR /app                                                                    │
-│<missing>                               0B        ENV JAVA_HOME=/usr/lib/jvm/jdk-24.0.1-bellsoft-x86_64 PATH=/usr/lib/jvm/jdk-24.0│
-│<missing>                               123.40MiB RUN |8 LIBERICA_IMAGE_VARIANT=lite LIBERICA_VM=server LIBERICA_GENERATE_CDS=fals│
-│<missing>                               0B        ARG BASE_URL=https://download.bell-sw.com/java/                                 │
-│<missing>                               0B        ARG LIBERICA_ROOT=/usr/lib/jvm/jdk-24.0.1-bellsoft                              │
-│<missing>                               0B        ARG LIBERICA_BUILD=11                                                           │
-│<missing>                               0B        ARG LIBERICA_VERSION=24.0.1                                                     │
-│<missing>                               0B        ARG LIBERICA_JVM_DIR=/usr/lib/jvm                                               │
-│<missing>                               0B        ARG LIBERICA_GENERATE_CDS=false                                                 │
-│<missing>                               0B        ARG LIBERICA_VM=server                                                          │
-│<missing>                               0B        ARG LIBERICA_IMAGE_VARIANT=lite                                                 │
-│<missing>                               0B        ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en                                          │
-│<missing>                               44.94MiB  RUN /bin/sh -c apt-get update                                &&    apt-get insta│
-│<missing>                               111.17MiB # debian.sh --arch 'amd64' out/ 'bookworm' '@1743984000'
+IMAGE          CREATED         CREATED BY                                      SIZE      COMMENT
+666431581cee   4 minutes ago   ENTRYPOINT ["/bin/sh" "-c" "java -jar /app/n…   0B        buildkit.dockerfile.v0
+<missing>      4 minutes ago   EXPOSE map[8081/tcp:{}]                         0B        buildkit.dockerfile.v0
+<missing>      4 minutes ago   RUN /bin/sh -c cd neurowatch && ./mvnw -Ppro…   355MB     buildkit.dockerfile.v0
+<missing>      6 minutes ago   COPY . /app/neurowatch # buildkit               310MB     buildkit.dockerfile.v0
+<missing>      6 minutes ago   WORKDIR /app                                    0B        buildkit.dockerfile.v0
+<missing>      2 months ago    /bin/sh -c #(nop)  ENV JAVA_HOME=/usr/lib/jv…   0B        
+<missing>      2 months ago    |8 BASE_URL=https://download.bell-sw.com/jav…   131MB     
+<missing>      2 months ago    /bin/sh -c #(nop)  ARG BASE_URL=https://down…   0B        
+<missing>      2 months ago    /bin/sh -c #(nop)  ARG LIBERICA_ROOT=/usr/li…   0B        
+<missing>      2 months ago    /bin/sh -c #(nop)  ARG LIBERICA_BUILD=11        0B        
+<missing>      2 months ago    /bin/sh -c #(nop)  ARG LIBERICA_VERSION=25.0…   0B        
+<missing>      2 months ago    /bin/sh -c #(nop)  ARG LIBERICA_JVM_DIR=/usr…   0B        
+<missing>      2 months ago    /bin/sh -c #(nop)  ARG LIBERICA_GENERATE_CDS…   0B        
+<missing>      2 months ago    /bin/sh -c #(nop)  ARG LIBERICA_VM=server       0B        
+<missing>      2 months ago    /bin/sh -c #(nop)  ARG LIBERICA_IMAGE_VARIAN…   0B        
+<missing>      2 months ago    /bin/sh -c #(nop)  ENV LANG=en_US.UTF-8 LANG…   0B        
+<missing>      2 months ago    /bin/sh -c apt-get update                   …   48.3MB    
+<missing>      2 months ago    # debian.sh --arch 'arm64' out/ 'bookworm' '…   139MB     debuerreotype 0.16
 ```
 
 
 ---
 
-## 820MB - should we worry about it?
+## 984MB - should we worry about it?
 <br/>
 
 - Longer push - longer updates
 - Longer pull - slower scaling
-- Dozens commits/day, 820MB each: we wil quickly run out of space for all these images
+- Dozens commits/day, 984MB each: we wil quickly run out of space for all these images
 
 ---
 layout: cover
@@ -232,26 +232,26 @@ ENTRYPOINT ["java","-jar","/app/app.jar"]
 
 ---
 
-## Result:  343MiB (359MB)
+## Result:  392MB
 <br/>
 
 ```plain {none|7,15,16|4}{maxHeight:'300px'}
-ID         TAG                          SIZE      COMMAND                                                                         │
-│97855e4950 neurowatch-neurowatch:latest 0B        ENTRYPOINT ["java" "-jar" "/app/app.jar"]                                       │
-│<missing>                               0B        EXPOSE map[8080/tcp:{}]                                                         │
-│<missing>                               62.83MiB  COPY /app/neurowatch/target/neurowatch-*.jar app.jar # buildkit                 │
-│<missing>                               0B        WORKDIR /app                                                                    │
-│<missing>                               0B        ENV JAVA_HOME=/usr/lib/jvm/jre-24.0.1-bellsoft-x86_64 PATH=/usr/lib/jvm/jre-24.0│
-│<missing>                               124.82MiB RUN |6 LIBERICA_VERSION=24.0.1 LIBERICA_BUILD=11 LIBERICA_VARIANT=jre LIBERICA_R│
-│<missing>                               0B        ARG LIBERICA_GENERATE_CDS=false                                                 │
-│<missing>                               0B        ARG LIBERICA_USE_LITE=1                                                         │
-│<missing>                               0B        ARG LIBERICA_ROOT=/usr/lib/jvm/jre-24.0.1-bellsoft                              │
-│<missing>                               0B        ARG LIBERICA_VARIANT=jre                                                        │
-│<missing>                               0B        ARG LIBERICA_BUILD=11                                                           │
-│<missing>                               0B        ARG LIBERICA_VERSION=24.0.1                                                     │
-│<missing>                               0B        ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en                                          │
-│<missing>                               44.94MiB  RUN /bin/sh -c apt-get update                                &&    apt-get insta│
-│<missing>                               111.17MiB # debian.sh --arch 'amd64' out/ 'bookworm' '@1743984000'
+IMAGE          CREATED              CREATED BY                                      SIZE      COMMENT
+2b665d1b1293   About a minute ago   ENTRYPOINT ["java" "-jar" "/app/app.jar"]       0B        buildkit.dockerfile.v0
+<missing>      About a minute ago   EXPOSE map[8080/tcp:{}]                         0B        buildkit.dockerfile.v0
+<missing>      About a minute ago   COPY /app/neurowatch/target/neurowatch-*.jar…   74.1MB    buildkit.dockerfile.v0
+<missing>      3 minutes ago        WORKDIR /app                                    0B        buildkit.dockerfile.v0
+<missing>      2 months ago         /bin/sh -c #(nop)  ENV JAVA_HOME=/usr/lib/jv…   0B        
+<missing>      2 months ago         |6 LIBERICA_BUILD=11 LIBERICA_GENERATE_CDS=f…   131MB     
+<missing>      2 months ago         /bin/sh -c #(nop)  ARG LIBERICA_GENERATE_CDS…   0B        
+<missing>      2 months ago         /bin/sh -c #(nop)  ARG LIBERICA_USE_LITE=1      0B        
+<missing>      2 months ago         /bin/sh -c #(nop)  ARG LIBERICA_ROOT=/usr/li…   0B        
+<missing>      2 months ago         /bin/sh -c #(nop)  ARG LIBERICA_VARIANT=jre     0B        
+<missing>      2 months ago         /bin/sh -c #(nop)  ARG LIBERICA_BUILD=11        0B        
+<missing>      2 months ago         /bin/sh -c #(nop)  ARG LIBERICA_VERSION=25.0…   0B        
+<missing>      2 months ago         /bin/sh -c #(nop)  ENV LANG=en_US.UTF-8 LANG…   0B        
+<missing>      2 months ago         /bin/sh -c apt-get update                   …   48.3MB    
+<missing>      2 months ago         # debian.sh --arch 'arm64' out/ 'bookworm' '…   139MB     debuerreotype 0.16
 ```
 
 ---
@@ -286,16 +286,16 @@ ENTRYPOINT ["java","-jar","/app/app.jar"]
 
 ---
 
-## Result: 189MiB (198MB)
+## Result: 206MB
 <br/>
 
 ```plain{none|6,2}{maxHeight:'300px'}
-ID         TAG                          SIZE      COMMAND                                                                         │
-│c88af46c34 neurowatch-neurowatch:latest 62.83MiB  [stage-1 3/3] COPY --from=builder /app/neurowatch/target/neurowatch-*.jar app.ja│
-│<missing>                               0B        ENTRYPOINT ["java" "-jar" "/app/app.jar"]                                       │
-│<missing>                               0B        EXPOSE map[8080/tcp:{}]                                                         │
-│<missing>                               0B        COPY /app/neurowatch/target/neurowatch-*.jar app.jar # buildkit                 │
-│<missing>                               126.43MiB WORKDIR /app  
+IMAGE          CREATED              CREATED BY                                      SIZE      COMMENT
+e46b11d81a8d   About a minute ago   [stage-1 3/3] COPY --from=builder /app/neuro…   74.1MB    buildkit.exporter.image.v0
+<missing>      About a minute ago   ENTRYPOINT ["java" "-jar" "/app/app.jar"]       0B        buildkit.dockerfile.v0
+<missing>      About a minute ago   EXPOSE map[8080/tcp:{}]                         0B        buildkit.dockerfile.v0
+<missing>      21 hours ago         COPY /app/neurowatch/target/neurowatch-*.jar…   0B        buildkit.dockerfile.v0
+<missing>      21 hours ago         WORKDIR /app                                    132MB     buildkit.dockerfile.v0
 ```
 
 
@@ -303,14 +303,14 @@ ID         TAG                          SIZE      COMMAND                       
 layout: cover
 ---
 
-# But! The app layer has the same size (65MB)
+# But! The app layer has the same size (74MB)
 
 ---
 
-## What are 65MB?
+## What are 74MB?
 <br/>
 
-Smallest change, and we push/pull 65MB
+Smallest change, and we push/pull 74MB
 
 Can we do something about it?
 
@@ -384,19 +384,19 @@ ENTRYPOINT ["java","-jar","/app/app.jar"]
 
 ---
 
-## Result: 189MiB (198MB)
+## Result: 206MB
 <br/>
 
 ```plain{none|5-8|2}{maxHeight:'180px'}
-│ID         TAG                          SIZE      COMMAND                                                                        │
-│b811866cc5 neurowatch-neurowatch:latest 6.72MiB   [stage-2 6/6] COPY --from=optimizer /app/extracted/application/ ./             │
-│<missing>                               0B        ENTRYPOINT ["java" "-jar" "/app/app.jar"]                                      │
-│<missing>                               0B        EXPOSE map[8080/tcp:{}]                                                        │
-│<missing>                               0B        COPY /app/extracted/application/ ./ # buildkit                                 │
-│<missing>                               0B        COPY /app/extracted/snapshot-dependencies/ ./ # buildkit                       │
-│<missing>                               459.4 KB  COPY /app/extracted/spring-boot-loader/ ./ # buildkit                          │
-│<missing>                               55.86MiB  COPY /app/extracted/dependencies/ ./ # buildkit                                │
-│<missing>                               126.43MiB WORKDIR /app
+IMAGE          CREATED          CREATED BY                                      SIZE      COMMENT
+8a242e10320e   57 seconds ago   [stage-2 6/6] COPY --from=optimizer /app/ext…   1.21MB    buildkit.exporter.image.v0
+<missing>      57 seconds ago   ENTRYPOINT ["java" "-jar" "/app/app.jar"]       0B        buildkit.dockerfile.v0
+<missing>      57 seconds ago   EXPOSE map[8080/tcp:{}]                         0B        buildkit.dockerfile.v0
+<missing>      57 seconds ago   COPY /app/extracted/application/ ./ # buildk…   0B        buildkit.dockerfile.v0
+<missing>      57 seconds ago   COPY /app/extracted/snapshot-dependencies/ .…   0B        buildkit.dockerfile.v0
+<missing>      57 seconds ago   COPY /app/extracted/spring-boot-loader/ ./ #…   72.7MB    buildkit.dockerfile.v0
+<missing>      22 hours ago     COPY /app/extracted/dependencies/ ./ # build…   0B        buildkit.dockerfile.v0
+<missing>      22 hours ago     WORKDIR /app                                    132MB     buildkit.dockerfile.v0
 ```
 
 ---
@@ -406,7 +406,7 @@ ENTRYPOINT ["java","-jar","/app/app.jar"]
 
 push/pull layer size!
 
-The size of the actively updated layer is now 7MB!
+The size of the actively updated layer is now 1.21MB!
 
 <v-click at="1">Can we skip writing all that in a Dockerfile? 😰</v-click>
 <br>
@@ -457,28 +457,28 @@ gradle bootBuildImage
 
 ---
 
-## Result: 357MB
+## Result: 403MB
 <br/>
 
 Peeking under the hood:
 
 ```plain{none|1,2|4-10|11|13-16|33}{maxHeight:'180px'}
 [INFO]  > Pulling builder image 'docker.io/paketobuildpacks/builder-noble-java-tiny:latest' 100%
-[INFO]  > Pulling run image 'docker.io/paketobuildpacks/ubuntu-noble-run-tiny:0.0.20' for platform 'linux/arm64' 100%
+[INFO]  > Pulling run image 'docker.io/paketobuildpacks/ubuntu-noble-run-tiny:0.0.47' for platform 'linux/arm64' 100%
 [INFO]  > Running creator
 [INFO]     [creator]     6 of 26 buildpacks participating
-[INFO]     [creator]     paketo-buildpacks/ca-certificates   3.10.3
-[INFO]     [creator]     paketo-buildpacks/bellsoft-liberica 11.2.4
-[INFO]     [creator]     paketo-buildpacks/syft              2.16.1
-[INFO]     [creator]     paketo-buildpacks/executable-jar    6.13.2
-[INFO]     [creator]     paketo-buildpacks/dist-zip          5.10.2
-[INFO]     [creator]     paketo-buildpacks/spring-boot       5.33.3
-[INFO]     [creator]       BellSoft Liberica JRE 24.0.1: Contributing to layer
+[INFO]     [creator]     paketo-buildpacks/ca-certificates   3.11.0
+[INFO]     [creator]     paketo-buildpacks/bellsoft-liberica 11.5.1
+[INFO]     [creator]     paketo-buildpacks/syft              2.26.0
+[INFO]     [creator]     paketo-buildpacks/executable-jar    6.14.0
+[INFO]     [creator]     paketo-buildpacks/dist-zip          5.11.0
+[INFO]     [creator]     paketo-buildpacks/spring-boot       5.35.0
+[INFO]     [creator]       BellSoft Liberica JRE 25.0.1: Contributing to layer
 [INFO]     [creator]       Creating slices from layers index
-[INFO]     [creator]         dependencies (77.4 MB)
-[INFO]     [creator]         spring-boot-loader (459.4 KB)
+[INFO]     [creator]         dependencies (69.3 MB)
+[INFO]     [creator]         spring-boot-loader (457.5 KB)
 [INFO]     [creator]         snapshot-dependencies (0.0 B)
-[INFO]     [creator]         application (18.0 MB)
+[INFO]     [creator]         application (2.9 MB)
 [INFO]     [creator]     ===> EXPORTING
 [INFO]     [creator]     Adding layer 'paketo-buildpacks/ca-certificates:helper'
 [INFO]     [creator]     Adding layer 'paketo-buildpacks/bellsoft-liberica:helper'
@@ -501,10 +501,27 @@ Peeking under the hood:
 
 <v-click at="6">Ubuntu slim: no shell, bigger image</v-click>
 <br>
-<v-click at="7">Can use bellsoft/buildpacks.builder:musl: smaller and with shell</v-click>
-<br>
 <v-click at="8">Native images with buildpacks also possible</v-click>
 
+---
+# Alpaquita buildpacks for Spring Boot
+<br/>
+
+```xml
+<plugin>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-maven-plugin</artifactId>
+    <configuration>
+        <image>
+            <builder>bellsoft/buildpacks.builder:glibc</builder>
+        </image>
+    </configuration>
+</plugin>
+```
+
+<br/>
+
+Image size: 215MB (shell is there)
 
 ---
 layout: cover
@@ -544,7 +561,7 @@ layout: cover
 
 ---
 
-## Layering a Spring app
+## AOT Cache with a Spring app
 <br/>
 
 Useful tip: enable Spring AOT
@@ -567,7 +584,7 @@ Useful tip: enable Spring AOT
 
 ---
 
-## Layering a Spring app
+## AOT Cache with a Spring app
 <br/>
 
 ```dockerfile {none|12|22-24|25-27|15}{maxHeight:'180px'}
@@ -592,12 +609,7 @@ COPY --from=optimizer /app/extracted/snapshot-dependencies/ ./
 COPY --from=optimizer /app/extracted/application/ ./
 EXPOSE 8080
 
-RUN java -Dspring.aot.enabled=true -XX:AOTMode=record / \
-    -XX:AOTConfiguration=app.aotconf -Dspring.context.exit=onRefresh / \
-    -jar /app/app.jar
-RUN java -Dspring.aot.enabled=true -XX:AOTMode=create \
-    -XX:AOTConfiguration=app.aotconf -XX:AOTCache=app.aot \
-    -jar /app/app.jar
+RUN java -Dspring.aot.enabled=true -XX:AOTCacheOutput=app.aot -Dspring.context.exit=onRefresh -jar /app/app.jar
 
 ```
 
@@ -676,198 +688,6 @@ IMAGE          CREATED          CREATED BY                                      
 But:
 - Need to rebuild the whole image every time
 
----
-
-## Round 3: CRaC
-<br/>
-
-- Coordinated Restore at Checkpoint is an OpenJDK project
-- A snapshot of a warmed-up Java app
-- Like pausing and resuming a video game
-- Start within milliseconds
-- Good old JVM is still there 
-
-<br/>
-<v-click> Sounds tempting... Where's the catch?</v-click>
-
-
----
-
-## CRaC is difficult
-<br/>
-
-- A snapshot may contain sensitive data
-- May need to augment the code for reliable checkpoint and restore
-- Not all solutions support CRaC out-of-the-box
-- Need more than just a Dockerfile
-
----
-
-## Spring Data MongoDB does not support CRaC
-
-<br>
-What are the options?
-
-- Fall back to another solution
-- Request support
-- Implement support on our own!
-
-
----
-
-## Add CRaC dependency
-<br/>
-
-```xml
-<dependency>
-    <groupId>org.crac</groupId>
-    <artifactId>crac</artifactId>
-    <version>1.5.0</version>
-</dependency>
-```
-
----
-
-## Befriending MongoDB with CRaC
-<br/>
-
-Custom MongoClient
-
-```java 
-public class MongoClientProxy implements MongoClient {
-    volatile MongoClient delegate;
-
-    public MongoClientProxy(MongoClient initialClient) {
-        this.delegate = initialClient;
-    }
-
-    public void close() {
-        delegate.close();
-    }
-}  
-```
-
----
-
-## Befriending MongoDB with CRaC
-<br/>
-
-Custom CRaC Resource
-
-```java {1,2|7-11|13-16|18-21}{maxHeight:'260px'}
-@Component
-static public class MongoClientResource implements Resource {
-
-    private final MongoClientProxy mongoClientProxy;
-    private final MongoConnectionDetails details;
-
-    public MongoClientResource(MongoClient mongoClientProxy, MongoConnectionDetails details) {
-        this.mongoClientProxy = (MongoClientProxy) mongoClientProxy;
-        this.details = details;
-        Core.getGlobalContext().register(this);
-    }
-
-    @Override
-    public void beforeCheckpoint(Context<? extends Resource> context) {
-        mongoClientProxy.delegate.close();
-    }
-
-    @Override
-    public void afterRestore(Context<? extends Resource> context) {
-        mongoClientProxy.delegate = MongoClients.create(details.getConnectionString());
-    }
-}
-```
-
----
-
-## Befriending MongoDB with CRaC
-<br/>
-
-Replace MongoClient in the context
-
-```java {1,3|4|2,5}
-@Bean
-@Primary
-public MongoClient mongoClient(MongoConnectionDetails details) {
-    MongoClient initialClient = MongoClients.create(details.getConnectionString());
-    return new MongoClientProxy(initialClient);
-}
-```
-
----
-
-## Dockerfile
-<br/>
-
-```docker {none|7|11}
-FROM bellsoft/liberica-runtime-container:jdk-21-musl as builder
-RUN apk add --no-cache nodejs npm
-WORKDIR /app
-ADD . /app/neurowatch
-RUN cd neurowatch && ./mvnw -Pproduction clean package
-
-FROM bellsoft/liberica-runtime-container:jre-21-crac-cds-stream-musl
-
-WORKDIR /app
-COPY --from=builder /app/neurowatch/target/neurowatch-*.jar app.jar
-ENTRYPOINT ["java", "-XX:CRaCCheckpointTo=/app/checkpoint", "-jar", "/app/app.jar"]
-```
-
-<v-click at="2">This does not create the checkpoint yet!</v-click>
-
----
-
-## First stage
-<br/>
-
-Create a preliminary image
-
-```bash
-docker build -t nw-pre-crac -f Dockerfile-crac .
-```
-
-Run it
-
-```bash
-ID=$(docker run --cap-add CAP_SYS_PTRACE --cap-add CAP_CHECKPOINT_RESTORE \
--p 8080:8080 --network=host -d nw-pre-crac)
-
-```
-<br/>
-
-- CAP_SYS_PTRACE to access the whole process tree
-- CAP_CHECKPOINT_RESTORE to perform checkpoint/restore without root access
-
----
-
-## Second stage
-<br/>
-
-Perform a checkpoint
-
-```bash
-docker exec -it $ID jcmd 129 JDK.checkpoint
-```
-
-Create a new image with a CRAC-ed app
-
-```bash
-docker commit $ID cracked
-```
-
-<v-click>
-
-Now, we are ready!
-
-```bash
-docker run --rm \
-    --entrypoint java \
-    --network host cracked:latest \
-    -XX:CRaCRestoreFrom=/app/checkpoint
-```
-
-</v-click>
 
 ---
 layout: cover
@@ -996,7 +816,6 @@ layout: cover
 
 1. AOT Cache - faster 'blood-less' start. Work in progress
 2. Native Image - fast start, optimal size and memory consumption, but may be challenging
-3. CRaC - fastest start, but may require code refactoring
 
 ---
 
