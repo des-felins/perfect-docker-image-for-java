@@ -538,6 +538,10 @@ layout: cover
 - Services starting in chain impact scaling efficiency
 - Warmup is also an issue (may take minutes)
 
+<br/>
+
+<v-click>Right now, our app starts in ~6 s</v-click>
+
 ---
 layout: cover
 ---
@@ -587,6 +591,18 @@ Useful tip: enable Spring AOT
 ## AOT Cache with a Spring app
 <br/>
 
+```properties
+spring.cloud.stream.enabled=false
+spring.data.mongodb.auto-index-creation=false
+app.create-test-users=false
+vaadin.launch-browser=false
+```
+
+---
+
+## AOT Cache with a Spring app
+<br/>
+
 ```dockerfile {none|12|22-24|25-27|15}{maxHeight:'180px'}
 FROM bellsoft/liberica-runtime-container:jdk-25-cds-musl as builder
 RUN apk add --no-cache nodejs npm
@@ -609,7 +625,11 @@ COPY --from=optimizer /app/extracted/snapshot-dependencies/ ./
 COPY --from=optimizer /app/extracted/application/ ./
 EXPOSE 8080
 
-RUN java -Dspring.aot.enabled=true -XX:AOTCacheOutput=app.aot -Dspring.context.exit=onRefresh -jar /app/app.jar
+RUN java -Dspring.aot.enabled=true \
+         -Dspring.profiles.active=aot \
+         -XX:AOTCacheOutput=app.aot \
+         -Dspring.context.exit=onRefresh \
+         -jar /app/app.jar
 
 ```
 
@@ -634,7 +654,7 @@ RUN java -Dspring.aot.enabled=true -XX:AOTCacheOutput=app.aot -Dspring.context.e
 
 The image is bigger because of the archive
 <br>
-Start is 50-60% faster (1.2s)
+Start is ~60% faster (2.2s)
 
 
 ---
@@ -661,6 +681,7 @@ FROM bellsoft/liberica-native-image-kit-container:jdk-25-nik-25-musl as builder
 RUN apk add --no-cache nodejs npm
 WORKDIR /app
 ADD . /app/neurowatch
+ENV SPRING_PROFILES_ACTIVE=native
 RUN cd neurowatch && ./mvnw -Pproduction -Pnative native:compile
 
 FROM bellsoft/alpaquita-linux-base:musl
