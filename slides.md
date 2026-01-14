@@ -270,7 +270,7 @@ IMAGE          CREATED              CREATED BY                                  
 ## Change the Dockerfile again
 <br/>
 
-```docker{none|1,7|2}{maxHeight:'300px'}
+```docker{none|1|2|7}{maxHeight:'300px'}
 FROM bellsoft/liberica-runtime-container:jdk-25-musl as builder
 RUN apk add --no-cache nodejs npm
 WORKDIR /app
@@ -299,6 +299,10 @@ e46b11d81a8d   About a minute ago   [stage-1 3/3] COPY --from=builder /app/neuro
 <missing>      21 hours ago         WORKDIR /app                                    132MB     buildkit.dockerfile.v0
 ```
 
+---
+layout: image
+image: size.svg
+---
 
 ---
 layout: cover
@@ -415,12 +419,6 @@ The size of the actively updated layer is now 1.21MB!
 
 
 ---
-layout: image
-image: size.svg
----
-
-
----
 layout: quote
 ---
 
@@ -445,7 +443,7 @@ Buildpacks
 
 The pack utility
 
-```bash {1|2|3|4}
+```bash {1|2|3}
 pack build neurowatch \
   --path . \
   -e BP_JVM_VERSION=25
@@ -508,10 +506,10 @@ Peeking under the hood:
 ```
 
 <v-click at="6">Ubuntu slim: no shell, bigger image</v-click>
-<br>
-<v-click at="8">Native images with buildpacks also possible</v-click>
+<v-click at="7">Native images with buildpacks also possible</v-click>
 
 ---
+
 # Alpaquita buildpacks for Spring Boot
 <br/>
 
@@ -642,7 +640,7 @@ RUN java -Dspring.aot.enabled=true \
 
 ---
 
-## Price: 293.9MiB (308MB)
+## Price: 355MB
 <br/>
 
 ```plain {2}{maxHeight:'180px'}
@@ -661,7 +659,7 @@ RUN java -Dspring.aot.enabled=true \
 
 The image is bigger because of the archive
 <br>
-Start is ~60% faster (1.4s)
+Start is 1.4s
 
 ---
 
@@ -694,6 +692,16 @@ FROM bellsoft/alpaquita-linux-base:musl
 WORKDIR /app
 ENTRYPOINT ["/app/app"]
 COPY --from=builder /app/neurowatch/target/native/neurowatch /app/app
+```
+
+<br/>
+application-native.properties
+
+```properties
+spring.data.mongodb.auto-index-creation=false
+app.create-test-users=false
+spring.cloud.stream.bindings.logConsumer-in-0.consumer.autoStartup=false
+vaadin.launch-browser=false
 ```
 
 ---
