@@ -506,6 +506,7 @@ Peeking under the hood:
 ```
 
 <v-click at="6">Ubuntu slim: no shell, bigger image</v-click>
+<br/>
 <v-click at="7">Native images with buildpacks also possible</v-click>
 
 ---
@@ -609,7 +610,7 @@ vaadin.launch-browser=false
 ## AOT Cache with a Spring app
 <br/>
 
-```dockerfile {none|12|22-26|15}{maxHeight:'180px'}
+```dockerfile {none|12|22-26|15}{maxHeight:'250px'}
 FROM bellsoft/liberica-runtime-container:jdk-25-cds-musl as builder
 RUN apk add --no-cache nodejs npm
 WORKDIR /app
@@ -699,7 +700,6 @@ application-native.properties
 
 ```properties
 spring.data.mongodb.auto-index-creation=false
-app.create-test-users=false
 spring.cloud.stream.bindings.logConsumer-in-0.consumer.autoStartup=false
 vaadin.launch-browser=false
 ```
@@ -806,7 +806,7 @@ Look for a vendor providing:
 ## Dockerfile
 <br/>
 
-```dockerfile {none|1,6,11}{maxHeight:'180px'}
+```dockerfile {none|1,6,11}{maxHeight:'400px'}
 FROM bellsoft/hardened-liberica-runtime-container:jdk-25-glibc as builder
 WORKDIR /app
 ADD . /app/neurowatch
