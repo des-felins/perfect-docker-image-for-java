@@ -198,7 +198,7 @@ layout: cover
 <br/>
 
 - Several FROM instructions in one Dockerfile
-- Clean final image
+- Clean final image 
 - Can use different base images
 
 ---
