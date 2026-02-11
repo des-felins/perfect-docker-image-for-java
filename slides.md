@@ -696,7 +696,7 @@ COPY --from=builder /app/neurowatch/target/native/neurowatch /app/app
 ```
 
 <br/>
-application-native.properties 
+application-native.properties
 
 ```properties
 spring.data.mongodb.auto-index-creation=false
