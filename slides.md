@@ -711,7 +711,7 @@ vaadin.launch-browser=false
 
 - Based on Linux only
 - Start at peak performance
-- Image size: 225MB
+- Image size: 225MB 
 
 But:
 - Need to rebuild the whole image every time
