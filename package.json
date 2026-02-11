@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "slidev build",
+    "build-gha": "slidev build --base /perfect-docker-image-for-java/",
     "dev": "slidev --open",
     "export": "slidev export"
   },
