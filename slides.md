@@ -9,7 +9,7 @@ mdc: true
 shiki: { theme: "nord" }
 ---
 
-# Creating a Perfect Container Image for a Java Application 
+# The Java Container Image Playbook: Design for Your Goals 
 
 Catherine Edelveis, BellSoft
 
