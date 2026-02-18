@@ -1,0 +1,19 @@
+import{_ as p}from"./slidev/CodeBlockWrapper.vue_vue_type_script_setup_true_lang-6G2gGtH7.js";import{b as m,o as r,w as i,g as s,e as c,m as u,ad as n,v as g,x as d,T as l}from"./modules/vue-OkAsPQIG.js";import{I as h}from"./slidev/default-DVM5K6QC.js";import{u as B,f as R}from"./slidev/context-BIVK2-TZ.js";import"./modules/unplugin-icons-CalMxMul.js";import"./index-CcHMgaCu.js";import"./modules/shiki-CfoU35ru.js";import"./slidev/TitleIcon.vue_vue_type_script_setup_true_lang-COtJCVlW.js";const G={__name:"slides.md__slidev_10",setup(b){const{$clicksContext:e,$frontmatter:o}=B();return e.setup(),(A,a)=>{const t=p;return r(),m(h,g(d(l(R)(l(o),9))),{default:i(()=>[a[1]||(a[1]=s("h2",null,"Result: 984MB",-1)),a[2]||(a[2]=s("br",null,null,-1)),c(t,u({maxHeight:"300px"},{title:"",ranges:["none","19,18","9-17","8","5,4"]}),{default:i(()=>[...a[0]||(a[0]=[s("pre",{class:"shiki shiki-themes vitesse-dark vitesse-light slidev-code",style:{"--shiki-dark":"#dbd7caee","--shiki-light":"#393a34","--shiki-dark-bg":"#121212","--shiki-light-bg":"#ffffff"}},[s("code",{class:"language-plain"},[s("span",{class:"line"},[s("span",null,"IMAGE          CREATED         CREATED BY                                      SIZE      COMMENT")]),n(`
+`),s("span",{class:"line"},[s("span",null,'666431581cee   4 minutes ago   ENTRYPOINT ["/bin/sh" "-c" "java -jar /app/n…   0B        buildkit.dockerfile.v0')]),n(`
+`),s("span",{class:"line"},[s("span",null,"<missing>      4 minutes ago   EXPOSE map[8081/tcp:{}]                         0B        buildkit.dockerfile.v0")]),n(`
+`),s("span",{class:"line"},[s("span",null,"<missing>      4 minutes ago   RUN /bin/sh -c cd neurowatch && ./mvnw -Ppro…   355MB     buildkit.dockerfile.v0")]),n(`
+`),s("span",{class:"line"},[s("span",null,"<missing>      6 minutes ago   COPY . /app/neurowatch # buildkit               310MB     buildkit.dockerfile.v0")]),n(`
+`),s("span",{class:"line"},[s("span",null,"<missing>      6 minutes ago   WORKDIR /app                                    0B        buildkit.dockerfile.v0")]),n(`
+`),s("span",{class:"line"},[s("span",null,"<missing>      2 months ago    /bin/sh -c #(nop)  ENV JAVA_HOME=/usr/lib/jv…   0B        ")]),n(`
+`),s("span",{class:"line"},[s("span",null,"<missing>      2 months ago    |8 BASE_URL=https://download.bell-sw.com/jav…   131MB     ")]),n(`
+`),s("span",{class:"line"},[s("span",null,"<missing>      2 months ago    /bin/sh -c #(nop)  ARG BASE_URL=https://down…   0B        ")]),n(`
+`),s("span",{class:"line"},[s("span",null,"<missing>      2 months ago    /bin/sh -c #(nop)  ARG LIBERICA_ROOT=/usr/li…   0B        ")]),n(`
+`),s("span",{class:"line"},[s("span",null,"<missing>      2 months ago    /bin/sh -c #(nop)  ARG LIBERICA_BUILD=11        0B        ")]),n(`
+`),s("span",{class:"line"},[s("span",null,"<missing>      2 months ago    /bin/sh -c #(nop)  ARG LIBERICA_VERSION=25.0…   0B        ")]),n(`
+`),s("span",{class:"line"},[s("span",null,"<missing>      2 months ago    /bin/sh -c #(nop)  ARG LIBERICA_JVM_DIR=/usr…   0B        ")]),n(`
+`),s("span",{class:"line"},[s("span",null,"<missing>      2 months ago    /bin/sh -c #(nop)  ARG LIBERICA_GENERATE_CDS…   0B        ")]),n(`
+`),s("span",{class:"line"},[s("span",null,"<missing>      2 months ago    /bin/sh -c #(nop)  ARG LIBERICA_VM=server       0B        ")]),n(`
+`),s("span",{class:"line"},[s("span",null,"<missing>      2 months ago    /bin/sh -c #(nop)  ARG LIBERICA_IMAGE_VARIAN…   0B        ")]),n(`
+`),s("span",{class:"line"},[s("span",null,"<missing>      2 months ago    /bin/sh -c #(nop)  ENV LANG=en_US.UTF-8 LANG…   0B        ")]),n(`
+`),s("span",{class:"line"},[s("span",null,"<missing>      2 months ago    /bin/sh -c apt-get update                   …   48.3MB    ")]),n(`
+`),s("span",{class:"line"},[s("span",null,"<missing>      2 months ago    # debian.sh --arch 'arm64' out/ 'bookworm' '…   139MB     debuerreotype 0.16")])])],-1)])]),_:1},16)]),_:1},16)}}};export{G as default};
